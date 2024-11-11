@@ -1,0 +1,62 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* Full viewport height */
+}
+
+/* Header styles */
+.header {
+    width: 100%;
+    background-color: #ebebeb;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.headerContent {
+    padding: 1rem 2rem;
+    padding-left: 1rem;
+}
+
+.headerContent h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #297496;
+}
+
+/* Main area styles */
+.mainArea {
+    display: flex;
+    flex: 1;
+    /* Takes up remaining space */
+}
+
+/* Content wrapper styles */
+.contentWrapper {
+    flex: 1;
+    display: flex;
+    justify-content: flex-start;
+    background-color: #ffffff;
+    padding: 0;
+}
+
+.contentWrapper>div {
+    /* This targets the ContentDisplay component */
+    width: 60%;
+    /* Takes only 60% of the available space */
+    padding-top: 20px;
+    padding-left: 40px;
+}
+
+/* Footer styles */
+.footer {
+    width: 100%;
+    background-color: #f8f9fa;
+    border-top: 1px solid #e5e7eb;
+}
+
+.footerContent {
+    padding: 1rem 2rem;
+    font-size: 12px;
+    text-align: left;
+    color: #8e9aaf;
+}

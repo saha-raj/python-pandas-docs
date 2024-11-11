@@ -1,0 +1,77 @@
+.tree-node-container {
+    position: relative;
+}
+
+.tree-node-vertical-line {
+    position: absolute;
+    width: 1px;
+    background: #e5e7eb;
+    top: 0;
+    bottom: 0;
+}
+
+.tree-node-content {
+    display: flex;
+    align-items: center;
+    min-height: 28px;
+    cursor: pointer;
+    border-radius: 4px;
+    padding: 2px 4px;
+}
+
+.tree-node-content.selected {
+    background-color: #ffd8a8;
+}
+
+.tree-node-expand-button {
+    width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #e5e7eb;
+    border-radius: 3px;
+    margin-right: 8px;
+    background: white;
+    font-size: 12px;
+    color: #6b7280;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.tree-node-spacer {
+    width: 24px;
+}
+
+.tree-node-title {
+    color: inherit;
+}
+
+.tree-node-title.has-content {
+    color: #4f5d75;
+}
+
+/* Font sizes and weights for different levels */
+.tree-node-title.root {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.tree-node-title.parent {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.tree-node-title.leaf {
+    font-weight: normal;
+    font-size: 13px;
+}
+
+/* Optional: Add hover effect */
+.tree-node-content:hover {
+    background-color: #f3f4f6;
+}
+
+.tree-node-content.selected:hover {
+    background-color: #ffd8a8;
+}

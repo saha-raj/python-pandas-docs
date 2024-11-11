@@ -1,0 +1,120 @@
+/* Main sidebar container */
+.sidebar {
+    width: 300px;
+    background-color: #fff;
+    border-right: 1px solid #e5e7eb;
+    overflow-y: auto;
+}
+
+.sidebarSearch {
+    margin-bottom: 20px;
+    padding: 14px;
+}
+
+.sidebarTree {
+    padding-left: 14px;
+}
+
+/* Common font style for all select elements */
+.select :global(.select__control),
+.select :global(.select__input-container),
+.select :global(.select__placeholder),
+.select :global(.select__single-value),
+.select :global(.select__option) {
+    font-family: 'Noto Sans', sans-serif;
+}
+
+/* Input box container */
+.select :global(.select__control) {
+    min-height: 45px;
+    border: 1px solid #ddd;
+    box-shadow: none;
+    background-color: #f5f5f5;
+    /* Add this line - change color as needed */
+}
+
+.select :global(.select__control:hover) {
+    border: 1px solid #999;
+}
+
+/* Input text while typing */
+.select :global(.select__input-container) {
+    font-size: 14px;
+    color: #4f5d75;
+    padding: 4px;
+}
+
+/* Placeholder text */
+.select :global(.select__placeholder) {
+    font-size: 14px;
+    color: #ccc;
+}
+
+/* Selected value text */
+.select :global(.select__single-value) {
+    font-size: 14px;
+    color: #4f5d75;
+}
+
+/* Dropdown menu */
+.select :global(.select__menu) {
+    margin-top: 8px;
+    border-radius: 6px;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    background-color: white;
+}
+
+/* Dropdown options */
+.select :global(.select__option) {
+    font-size: 14px;
+    /* padding: 12px 14px; */
+    padding: 8px 16px;
+    /* Decrease from 12px to 8px (or less) for vertical padding */
+
+    color: #495057;
+    cursor: pointer;
+    background-color: white;
+}
+
+/* Hover state for dropdown options */
+.select :global(.select__option:hover) {
+    background-color: #f3f4f6;
+}
+
+/* Selected option in dropdown */
+.select :global(.select__option--is-selected) {
+    background-color: #ffd8a8;
+    color: #333;
+}
+
+/* Focused option in dropdown */
+.select :global(.select__option--is-focused) {
+    background-color: #f3f4f6;
+}
+
+/* Menu list container */
+.select :global(.select__menu-list) {
+    padding: 2px;
+}
+
+/* Value container (includes input) */
+.select :global(.select__value-container) {
+    padding: 2px 8px;
+}
+
+/* Clear button */
+.select :global(.select__clear-indicator) {
+    cursor: pointer;
+    padding: 0 8px;
+    color: #999;
+}
+
+.select :global(.select__clear-indicator:hover) {
+    color: #666;
+}
+
+/* Remove default focus outlines */
+.select :global(.select__control--is-focused) {
+    border-color: #999 !important;
+    box-shadow: none;
+}
