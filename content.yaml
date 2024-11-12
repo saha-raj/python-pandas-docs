@@ -1,0 +1,373 @@
+sections:
+  - id: "python-basics"
+    title: "Python"
+    items:
+      - id: "storing-values"
+        title: "Storing values in memory"
+        items:
+          - id: "Variables"
+            title: "Variables"
+            content:
+              description: "Variables are used to store data values in memory. Python variables do not require explicit declaration to reserve memory space."
+              codeBlocks:
+                - code: |
+                    # Example of storing values in variables
+                    x = 5
+                    y = "Hello"
+                    print(x)
+                    print(y)
+                  output: "5\nHello"
+          - id: "Lists"
+            title: "Lists"
+            content:
+              description: "Lists in Python allow you to store multiple values in a single variable. Lists are mutable and can contain different types of data."
+              codeBlocks:
+                - code: |
+                    # List examples
+                    fruits = ["apple", "banana", "cherry"]
+                    print(f"Fruits: {fruits}")
+                  output: "Fruits: ['apple', 'banana', 'cherry']"
+          - id: "Arrays"
+            title: "Arrays"
+            content:
+              description: "Arrays are similar to lists but are generally used to store homogeneous data types and often come with added functionality via the array library."
+              codeBlocks:
+                - code: |
+                    # Array example using the array library
+                    from array import array
+                    numbers = array('i', [1, 2, 3, 4])
+                    print(f"Numbers: {numbers}")
+                  output: "Numbers: array('i', [1, 2, 3, 4])"
+          - id: "Dictionaries"
+            title: "Dictionaries"
+            content:
+              description: "Dictionaries store data as key-value pairs and are commonly used for quick lookups based on unique keys."
+              codeBlocks:
+                - code: |
+                    # Dictionary example
+                    person = {"name": "Alice", "age": 25, "city": "New York"}
+                    print(f"Person: {person}")
+                  output: "Person: {'name': 'Alice', 'age': 25, 'city': 'New York'}"
+          - id: "dataframes-ref"
+            title: "dataframes (see pandas)"
+            content:
+              description: "DataFrames are used to store and manipulate tabular data in Python using the pandas library."
+              codeBlocks:
+                - code: |
+                    import pandas as pd
+                    df = pd.DataFrame({"Name": ["Alice", "Bob"], "Age": [25, 30]})
+                    print(df)
+                  output: "Name  Age\n0  Alice   25\n1    Bob   30"
+
+      - id: "manipulating-values"
+        title: "Manipulating values"
+        items:
+          - id: "arithmetic"
+            title: "Arithmetic"
+            content:
+              description: "Arithmetic operations include addition, subtraction, multiplication, and division, performed using arithmetic operators."
+              codeBlocks:
+                - code: |
+                    # Arithmetic operations
+                    result = 5 + 3
+                    print(result)
+                  output: "8"
+          - id: "logic-comparison"
+            title: "logic and comparison"
+            content:
+              description: "Logic and comparison operators allow you to compare values and perform logical operations such as AND, OR, and NOT."
+              codeBlocks:
+                - code: |
+                    # Comparison example
+                    print(5 > 3)
+                    print(5 == 5)
+                  output: "True\nTrue"
+          - id: "string-ops"
+            title: "String"
+            content:
+              description: "String operations involve manipulating text data, including concatenation, slicing, and various string methods."
+              codeBlocks:
+                - code: |
+                    # String manipulation
+                    text = "Hello"
+                    print(text.upper())
+                  output: "HELLO"
+
+      - id: "control-flow"
+        title: "Control Flow"
+        items:
+          - id: "if-else"
+            title: "if else"
+            content:
+              description: "Control flow statements like if-else allow conditional execution of code blocks based on conditions."
+              codeBlocks:
+                - code: |
+                    # if-else example
+                    x = 10
+                    if x > 5:
+                        print("x is greater than 5")
+                    else:
+                        print("x is 5 or less")
+                  output: "x is greater than 5"
+          - id: "in-not-in"
+            title: "in, not in"
+            content:
+              description: "The 'in' and 'not in' operators check for membership within a sequence, such as a list or a string."
+              codeBlocks:
+                - code: |
+                    # in, not in example
+                    fruits = ["apple", "banana", "cherry"]
+                    print("apple" in fruits)
+                    print("mango" not in fruits)
+                  output: "True\nTrue"
+          - id: "for-loops"
+            title: "for"
+            content:
+              description: "For loops allow you to iterate over a sequence of items, such as a list, string, or range of numbers."
+              codeBlocks:
+                - code: |
+                    # For loop example
+                    for i in range(3):
+                        print(i)
+                  output: "0\n1\n2"
+          - id: "while-loops"
+            title: "while"
+            content:
+              description: "While loops allow repeated execution of a code block as long as a specified condition remains true."
+              codeBlocks:
+                - code: |
+                    # While loop example
+                    count = 0
+                    while count < 3:
+                        print(count)
+                        count += 1
+                  output: "0\n1\n2"
+
+      - id: "io"
+        title: "Input / output"
+        items:
+          - id: "print"
+            title: "print"
+            content:
+              description: "The print function outputs text and variables to the console."
+              codeBlocks:
+                - code: |
+                    # Print example
+                    print("Hello, World!")
+                  output: "Hello, World!"
+          - id: "file-io"
+            title: "read and write to files"
+            content:
+              description: "File I/O allows reading from and writing to files on disk, using functions like open, read, write, and close."
+              codeBlocks:
+                - code: |
+                    # Write to a file
+                    with open("example.txt", "w") as file:
+                        file.write("Hello, World!")
+                    # Read from a file
+                    with open("example.txt", "r") as file:
+                        content = file.read()
+                    print(content)
+                  output: "Hello, World!"
+          - id: "other-io"
+            title: "other?"
+            content:
+              description: "Other I/O operations include reading user input from the console or working with other data streams."
+              codeBlocks:
+                - code: |
+                    # User input example
+                    name = input("Enter your name: ")
+                    print(f"Hello, {name}!")
+                  output: "Enter your name: [User enters 'Alice']\nHello, Alice!"
+
+      - id: "advanced"
+        title: "Advanced"
+        items:
+          - id: "Functions"
+            title: "Functions"
+            content:
+              description: "Functions allow you to define reusable code blocks that can be called with different arguments."
+              codeBlocks:
+                - code: |
+                    # Function example
+                    def greet(name):
+                        return f"Hello, {name}!"
+                    print(greet("Alice"))
+                  output: "Hello, Alice!"
+          - id: "methods"
+            title: "Methods"
+            content:
+              description: "Methods are functions that belong to an object, such as string and list methods that perform specific actions."
+              codeBlocks:
+                - code: |
+                    # String method example
+                    text = "hello"
+                    print(text.capitalize())
+                  output: "Hello"
+          - id: "list-comprehensions"
+            title: "List Comprehensions"
+            content:
+              description: "List comprehensions offer a concise way to create lists using an expression followed by a for clause."
+              codeBlocks:
+                - code: |
+                    # List comprehension example
+                    squares = [x**2 for x in range(5)]
+                    print(squares)
+                  output: "[0, 1, 4, 9, 16]"
+          - id: "error-handling"
+            title: "Error Handling"
+            content:
+              description: "Error handling allows you to manage exceptions gracefully, ensuring that your program can handle unexpected conditions."
+              codeBlocks:
+                - code: |
+                    # Error handling example
+                    try:
+                        result = 10 / 0
+                    except ZeroDivisionError:
+                        result = "Cannot divide by zero"
+                    print(result)
+                  output: "Cannot divide by zero"
+
+  - id: "pandas"
+    title: "Pandas"
+    items:
+      - id: "input"
+        title: "input"
+        items:
+          - id: "create-df"
+            title: "creating dataframe"
+            content:
+              description: "Creating a DataFrame from lists, dictionaries, or other data sources."
+              codeBlocks:
+                - code: |
+                    import pandas as pd
+                    # Create DataFrame from dictionary
+                    data = {"Name": ["Alice", "Bob"], "Age": [25, 30]}
+                    df = pd.DataFrame(data)
+                    print(df)
+                  output: |
+                    Name  Age
+                    0  Alice   25
+                    1    Bob   30
+          - id: "load-df"
+            title: "loading dataframe from file, csv and excel"
+            content:
+              description: "Load a DataFrame from various file formats, such as CSV and Excel."
+              codeBlocks:
+                - code: |
+                    # Load DataFrame from CSV file
+                    df = pd.read_csv("data.csv")
+                    print(df)
+                  output: "Displays DataFrame content from CSV file"
+
+      - id: "view"
+        title: "View"
+        items:
+          - id: "inspect"
+            title: "inspect/summarize"
+            content:
+              description: "Inspect or summarize data using methods such as head, tail, info, and describe."
+              codeBlocks:
+                - code: |
+                    # Inspect the first few rows
+                    print(df.head())
+                    # Summary statistics
+                    print(df.describe())
+                  output: "Displays first few rows and summary statistics of the DataFrame"
+          - id: "index-slice"
+            title: "index, slice"
+            content:
+              description: "Index or slice data using loc and iloc for specific rows and columns."
+              codeBlocks:
+                - code: |
+                    # Select specific rows by index
+                    subset = df.loc[0:2, ["Name", "Age"]]
+                    print(subset)
+                  output: "Displays selected rows and columns based on index and column names"
+
+      - id: "select"
+        title: "select"
+        items:
+          - id: "filter-subset"
+            title: "filter, subset"
+            content:
+              description: "Filter or subset data based on specific conditions."
+              codeBlocks:
+                - code: |
+                    # Filter rows where Age > 25
+                    filtered_df = df[df["Age"] > 25]
+                    print(filtered_df)
+                  output: "Displays rows where the Age column value is greater than 25"
+          - id: "sort"
+            title: "sort"
+            content:
+              description: "Sort data by specified columns."
+              codeBlocks:
+                - code: |
+                    # Sort by the Age column
+                    sorted_df = df.sort_values("Age")
+                    print(sorted_df)
+                  output: "Displays DataFrame sorted by the Age column"
+
+      - id: "modify"
+        title: "modify"
+        items:
+          - id: "clean"
+            title: "clean"
+            content:
+              description: "Clean data by handling missing values, duplicates, or data formatting."
+              codeBlocks:
+                - code: |
+                    # Drop rows with missing values
+                    cleaned_df = df.dropna()
+                    print(cleaned_df)
+                  output: "Displays DataFrame with rows containing NaN values removed"
+          - id: "transform"
+            title: "transform"
+            content:
+              description: "Transform data by applying functions to columns or rows."
+              codeBlocks:
+                - code: |
+                    # Apply transformation to the Age column
+                    df["Age"] = df["Age"].apply(lambda x: x + 1)
+                    print(df)
+                  output: "Displays DataFrame with transformed Age values"
+
+      - id: "combine"
+        title: "combine"
+        items:
+          - id: "agg-group"
+            title: "aggregate and group"
+            content:
+              description: "Aggregate data by grouping on specific columns and applying functions like sum or mean."
+              codeBlocks:
+                - code: |
+                    # Group by a column and calculate the mean
+                    grouped_df = df.groupby("Name").mean()
+                    print(grouped_df)
+                  output: "Displays grouped DataFrame with average values"
+          - id: "merge-join"
+            title: "merge and join"
+            content:
+              description: "Combine data from multiple DataFrames using merge or join."
+              codeBlocks:
+                - code: |
+                    # Merge two DataFrames on a common column
+                    df1 = pd.DataFrame({"ID": [1, 2], "Name": ["Alice", "Bob"]})
+                    df2 = pd.DataFrame({"ID": [1, 2], "Age": [25, 30]})
+                    merged_df = pd.merge(df1, df2, on="ID")
+                    print(merged_df)
+                  output: "Displays merged DataFrame based on common column"
+
+      - id: "output"
+        title: "output"
+        items:
+          - id: "save-df"
+            title: "save dataframe"
+            content:
+              description: "Save DataFrame to a file format such as CSV or Excel."
+              codeBlocks:
+                - code: |
+                    # Save DataFrame to CSV
+                    df.to_csv("output.csv", index=False)
+                  output: "Saves DataFrame as a CSV file named 'output.csv'"

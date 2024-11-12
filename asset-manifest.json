@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/python-pandas-docs/static/css/main.798b8496.css",
-    "main.js": "/python-pandas-docs/static/js/main.c103cf14.js",
+    "main.js": "/python-pandas-docs/static/js/main.30552dc1.js",
     "static/js/453.22e6475a.chunk.js": "/python-pandas-docs/static/js/453.22e6475a.chunk.js",
     "index.html": "/python-pandas-docs/index.html",
     "main.798b8496.css.map": "/python-pandas-docs/static/css/main.798b8496.css.map",
-    "main.c103cf14.js.map": "/python-pandas-docs/static/js/main.c103cf14.js.map",
+    "main.30552dc1.js.map": "/python-pandas-docs/static/js/main.30552dc1.js.map",
     "453.22e6475a.chunk.js.map": "/python-pandas-docs/static/js/453.22e6475a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.798b8496.css",
-    "static/js/main.c103cf14.js"
+    "static/js/main.30552dc1.js"
   ]
 }
