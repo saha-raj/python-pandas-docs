@@ -1,11 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Sidebar from './components/Sidebar';
 import ContentDisplay from './components/ContentDisplay';
-import { docContent } from './data/content';
-import styles from './App.module.css';  // We'll create this
+import { fetchDocContent } from './data/content';
+import styles from './App.module.css';
 
 function App() {
   const [selectedItem, setSelectedItem] = useState(null);
+  const [docContent, setDocContent] = useState(null); // State to hold fetched content
+
+  useEffect(() => {
+    const loadContent = async () => {
+      const content = await fetchDocContent();
+      setDocContent(content);
+    };
+
+    loadContent();
+  }, []);
+
+  // Show a loading message while content is being fetched
+  if (!docContent) return <div>Loading content...</div>;
 
   return (
     <div className={styles.container}>
@@ -36,22 +49,3 @@ function App() {
 }
 
 export default App;
-
-// import React, { useState } from 'react';
-// import Sidebar from './components/Sidebar';
-// import ContentDisplay from './components/ContentDisplay';
-// import { docContent } from './data/content';
-// import './App.css';
-
-// function App() {
-//   const [selectedItem, setSelectedItem] = useState(null);
-
-//   return (
-//     <div className="app">
-//       <Sidebar content={docContent} onSelect={setSelectedItem} />
-//       <ContentDisplay selectedItem={selectedItem} content={docContent} />
-//     </div>
-//   );
-// }
-
-// export default App;
