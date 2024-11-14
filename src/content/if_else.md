@@ -7,15 +7,20 @@ self: "if else"
 selfOrder: 10
 ---
 
-Conditional statements to execute code based on conditions.
+## if else
+`if else` statements allow you to execute code based on conditions. The `elif` keyword provides additional conditions.
 
 ```python
-x = 10
-if x > 5:
-    print('Greater')
+temperature = 30
+
+if temperature > 35:
+    print("It's a hot day.")
+elif temperature > 20:
+    print("It's a warm day.")
 else:
-    print('Smaller')
+    print("It's a cold day.")
 ```
 ```output
-Greater
+It's a warm day.
 ```
+

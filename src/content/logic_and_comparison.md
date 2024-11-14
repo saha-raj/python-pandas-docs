@@ -7,13 +7,23 @@ self: "Logic and Comparison"
 selfOrder: 20
 ---
 
-Logic and comparison operators include AND, OR, NOT, and comparison symbols like >, <.
+## Logic and Comparison
+Logical operators (`and`, `or`, `not`) and comparison operators (`==`, `!=`, `<`, `>`, `<=`, `>=`) are used for making comparisons and combining conditions.
 
 ```python
-print(5 > 3)
-print(5 == 5)
+a = 5
+b = 10
+
+print(a == b)       # Equal to
+print(a != b)       # Not equal to
+print(a < b and b > 0)  # Logical AND
+print(a > b or a < b)   # Logical OR
+print(not a == b)       # Logical NOT
 ```
 ```output
+False
+True
+True
 True
 True
 ```

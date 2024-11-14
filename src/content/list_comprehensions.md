@@ -7,7 +7,8 @@ self: "List Comprehensions"
 selfOrder: 30
 ---
 
-List comprehensions create lists using an expression and for loop in one line.
+## List Comprehensions
+List comprehensions provide a concise way to create lists. They follow the form `[expression for item in iterable]`.
 
 ```python
 squares = [x**2 for x in range(5)]

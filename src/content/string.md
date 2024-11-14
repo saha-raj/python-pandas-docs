@@ -7,12 +7,18 @@ self: "String"
 selfOrder: 30
 ---
 
-String operations involve concatenation, slicing, and string methods.
+## String
+String manipulation includes operations like concatenation, indexing, slicing, and using built-in string methods like `.upper()`, `.lower()`, and `.replace()`.
 
 ```python
-text = 'Hello'
-print(text.upper())
+text = "hello"
+print(text.upper())           # Convert to uppercase
+print(text.replace("l", "w")) # Replace characters
+print(text[1:4])              # Slice string
 ```
 ```output
 HELLO
+hewwo
+ell
 ```
+

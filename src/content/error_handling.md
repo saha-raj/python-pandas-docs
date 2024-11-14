@@ -7,15 +7,18 @@ self: "Error Handling"
 selfOrder: 40
 ---
 
-Error handling manages exceptions to prevent program crashes.
+## Error Handling
+Error handling uses `try`, `except`, `finally`, and `else` blocks to manage exceptions and prevent crashes.
 
 ```python
 try:
-    result = 10 / 0
+    x = 1 / 0
 except ZeroDivisionError:
-    result = 'Cannot divide by zero'
-print(result)
+    print("Cannot divide by zero!")
+finally:
+    print("End of code.")
 ```
 ```output
-Cannot divide by zero
+Cannot divide by zero!
+End of code.
 ```

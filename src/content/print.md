@@ -7,11 +7,13 @@ self: "Print"
 selfOrder: 10
 ---
 
-The print function outputs text and variables to the console.
+## Print
+The `print()` function outputs values to the console.
 
 ```python
-print('Hello, World!')
+name = "Alice"
+print("Hello,", name)
 ```
 ```output
-Hello, World!
+Hello, Alice
 ```

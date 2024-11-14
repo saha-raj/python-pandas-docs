@@ -1,16 +1,13 @@
 .content {
-    /* padding: 0px 40px; */
     padding-top: 0px;
     margin-top: 0px;
-
-
 }
 
 .title {
     font-family: 'Noto Sans', sans-serif;
-    font-size: 44px;
-    font-weight: 600;
-    color: #2b2b2b;
+    font-size: 36px;
+    font-weight: 800;
+    color: #3d5a80;
     margin-bottom: 1.5rem;
     padding-top: 0rem;
     margin-top: 0px;
@@ -18,15 +15,111 @@
 
 .description {
     font-family: 'Noto Sans', sans-serif;
-    font-size: 15px;
+    font-size: 16px;
     line-height: 1.6;
-    color: #2b2b2b;
-    margin-bottom: 2rem;
+    color: #1d3557;
+    margin-bottom: 1rem;
 }
 
 .emptyMessage {
     font-family: 'Noto Sans', sans-serif;
-    font-size: 15px;
+    font-size: 16px;
     color: #666;
     padding: 20px 0;
+}
+
+/* Header Styles */
+.h2Header {
+    color: #3d5a80;
+    margin-top: 1.5rem;
+    margin-bottom: 0rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding-bottom: 0rem;
+}
+
+.h3Header {
+    color: #3d5a80;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.h4Header {
+    color: #3d5a80;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* Code Block Styles */
+.codeBlock {
+    margin-bottom: 10px;
+}
+
+.codeContainer {
+    background-color: #fafaff;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border: 1px solid #efefef;
+    overflow: hidden;
+}
+
+.codeContainerSingle {
+    border-radius: 6px;
+    /* color: red; */
+}
+
+.outputBlock {
+    background-color: #eef0f2;
+    padding: 12px 16px;
+    font-family: 'Consolas', monospace;
+    font-size: 14px;
+    color: #70798c;
+    white-space: pre-wrap;
+    margin: 0;
+    border: 1px solid #efefef;
+    border-top: none;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.syntaxHighlighter {
+    margin: 0;
+    padding: 16px;
+    background-color: transparent;
+    font-family: 'Consolas', monospace;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.inlineCode {
+    background-color: red;
+    /* Light gray background */
+    padding: 0.2em 0.4em;
+    /* Spacing around the text */
+    border-radius: 3px;
+    /* Rounded corners */
+    font-family: 'Consolas', monospace;
+    /* Monospace font */
+    font-size: 0.2em;
+    /* Slightly smaller than surrounding text */
+    color: #e63946;
+    /* Red color - adjust as needed */
+}
+
+.description code {
+    background-color: #f3f4f6;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-family: 'Consolas', monospace;
+    font-size: 0.9em;
+    /* color: #ec4476; */
+
+    color: #118ab2;
+    font-weight: 600;
 }

@@ -7,12 +7,14 @@ self: "Methods"
 selfOrder: 20
 ---
 
-Methods are functions associated with an object like a list or string.
+## Methods
+Methods are functions associated with objects. They are called on objects using dot notation (e.g., `.append()` for lists).
 
 ```python
-text = 'hello'
-print(text.capitalize())
+fruits = ["apple", "banana"]
+fruits.append("cherry")       # Append method for list
+print(fruits)
 ```
 ```output
-Hello
+['apple', 'banana', 'cherry']
 ```

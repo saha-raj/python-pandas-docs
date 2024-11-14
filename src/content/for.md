@@ -7,14 +7,16 @@ self: "for"
 selfOrder: 30
 ---
 
-For loops allow iteration over a sequence of items.
+## for
+A `for` loop is used to iterate over a sequence (like a list or range).
 
 ```python
-for i in range(3):
-    print(i)
+for num in range(3):
+    print("Number:", num)
 ```
 ```output
-0
-1
-2
+Number: 0
+Number: 1
+Number: 2
 ```
+

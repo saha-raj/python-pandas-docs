@@ -7,12 +7,17 @@ self: "in, not in"
 selfOrder: 20
 ---
 
-'in' and 'not in' check membership within a sequence.
+## in, not in
+The `in` and `not in` operators check if an element is present or absent in a collection (like a list, string, or dictionary).
 
 ```python
-fruits = ['apple', 'banana']
-print('apple' in fruits)
+fruits = ["apple", "banana", "cherry"]
+
+print("apple" in fruits)      # Check if "apple" is in the list
+print("orange" not in fruits) # Check if "orange" is not in the list
 ```
 ```output
 True
+True
 ```
+

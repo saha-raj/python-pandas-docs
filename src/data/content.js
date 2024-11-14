@@ -11,7 +11,7 @@ export const fetchDocContent = async () => {
       const [, frontmatter, mainContent] = content.split('---\n');
 
       return {
-        id: filename.replace('./', '').replace('.md', ''), // Keep ID as filename
+        id: filename.replace('./', '').replace('.md', ''),
         metadata: yaml.load(frontmatter),
         content: mainContent.trim()
       };
@@ -24,7 +24,7 @@ export const fetchDocContent = async () => {
     processedFiles.forEach(file => {
       const { metadata } = file;
 
-      // Handle grandparent level (same as before)
+      // Handle grandparent level
       let grandParent = grandParentMap.get(metadata.grandParent);
       if (!grandParent) {
         grandParent = {
@@ -37,7 +37,7 @@ export const fetchDocContent = async () => {
         tree.push(grandParent);
       }
 
-      // Handle parent level (same as before)
+      // Handle parent level
       let parent = grandParent.items.find(item => item.title === metadata.parent);
       if (!parent) {
         parent = {
@@ -49,20 +49,23 @@ export const fetchDocContent = async () => {
         grandParent.items.push(parent);
       }
 
+      // Process content keeping the markdown and code blocks in order
+      const { description, codeBlocks } = parseContent(file.content);
+
       // Modified leaf node creation
       const leaf = {
-        id: metadata.self.toLowerCase().replace(/\s+/g, '-'),  // Create ID from metadata.self
-        title: metadata.self,  // Use metadata.self directly
+        id: metadata.self.toLowerCase().replace(/\s+/g, '-'),
+        title: metadata.self,
         order: metadata.selfOrder,
         content: {
-          description: file.content.split('\n')[0],
-          codeBlocks: parseCodeBlocks(file.content)
+          description,
+          codeBlocks
         }
       };
       parent.items.push(leaf);
     });
 
-    // Sort all levels (same as before)
+    // Sort all levels
     tree.sort((a, b) => a.order - b.order);
     tree.forEach(grandParent => {
       grandParent.items.sort((a, b) => a.order - b.order);
@@ -78,25 +81,49 @@ export const fetchDocContent = async () => {
   }
 };
 
-// parseCodeBlocks function stays the same
+function parseContent(content) {
+  // Normalize line endings and remove empty lines after front matter
+  let normalizedContent = content.replace(/\r\n/g, '\n').trim();
 
-function parseCodeBlocks(content) {
-  const blocks = [];
-  const regex = /```(python|output)?\n([\s\S]*?)```/g;
-  let match;
+  const parts = normalizedContent.split(/```(python|output)?/);
+  const codeBlocks = [];
+  let description = '';
+  let currentBlock = null;
 
-  while ((match = regex.exec(content)) !== null) {
-    const type = match[1];
-    const code = match[2].trim();
-
-    if (type === 'output') {
-      if (blocks.length > 0) {
-        blocks[blocks.length - 1].output = code;
+  parts.forEach((part, index) => {
+    if (part === 'python') {
+      // Store any text that came before this code block
+      const previousText = parts[index - 1];
+      if (previousText && !['python', 'output'].includes(parts[index - 2])) {
+        const text = previousText.trim();
+        if (text) {
+          description += (description ? '\n\n' : '') + text;
+        }
       }
-    } else {
-      blocks.push({ code });
+      currentBlock = { code: parts[index + 1].trim() };
+      codeBlocks.push(currentBlock);
+    } else if (part === 'output' && currentBlock) {
+      currentBlock.output = parts[index + 1].trim();
+      currentBlock = null;
+    } else if (index === parts.length - 1 && part.trim()) {
+      // Handle any remaining text after the last code block
+      description += (description ? '\n\n' : '') + part.trim();
     }
-  }
+  });
 
-  return blocks;
+  // Clean up the description: normalize multiple newlines to double newlines
+  description = description
+    .replace(/\n{3,}/g, '\n\n')  // Replace triple+ newlines with double
+    .trim();                      // Remove leading/trailing whitespace
+
+  console.log("Processed content:", {
+    description,
+    codeBlocks,
+    originalContent: normalizedContent
+  });
+
+  return {
+    description,
+    codeBlocks
+  };
 }

@@ -7,16 +7,18 @@ self: "while"
 selfOrder: 40
 ---
 
-While loops repeat as long as a condition is true.
+## while
+A `while` loop repeatedly executes code as long as a condition is `True`.
 
 ```python
 count = 0
 while count < 3:
-    print(count)
+    print("Count:", count)
     count += 1
 ```
 ```output
-0
-1
-2
+Count: 0
+Count: 1
+Count: 2
 ```
+

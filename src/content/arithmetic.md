@@ -7,12 +7,28 @@ self: "Arithmetic"
 selfOrder: 10
 ---
 
-Arithmetic operations include addition, subtraction, multiplication, and division.
+## Arithmetic
+Arithmetic operations allow you to perform basic calculations. Operators include addition (+), subtraction (-), multiplication (*), division (/), modulus (%), exponentiation (**), and floor division (//).
 
 ```python
-result = 5 + 3
-print(result)
+x = 10
+y = 3
+
+print(x + y)   # Addition
+print(x - y)   # Subtraction
+print(x * y)   # Multiplication
+print(x / y)   # Division
+print(x % y)   # Modulus
+print(x ** y)  # Exponentiation
+print(x // y)  # Floor Division
 ```
 ```output
-8
+13
+7
+30
+3.3333333333333335
+1
+1000
+3
 ```
+

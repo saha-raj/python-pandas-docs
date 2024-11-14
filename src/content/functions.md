@@ -7,13 +7,15 @@ self: "Functions"
 selfOrder: 10
 ---
 
-Functions allow reusable blocks of code with arguments and return values.
+## Functions
+Functions are reusable blocks of code defined using `def`. They can take parameters and return values.
 
 ```python
 def greet(name):
-    return f'Hello, {name}!'
-print(greet('Alice'))
+    return "Hello, " + name
+
+print(greet("Alice"))
 ```
 ```output
-Hello, Alice!
+Hello, Alice
 ```

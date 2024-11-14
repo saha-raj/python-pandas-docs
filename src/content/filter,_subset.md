@@ -3,16 +3,35 @@ grandParent: "Pandas"
 grandParentOrder: 20
 parent: "Selecting"
 parentOrder: 30
-self: "filter, subset"
+self: "Filter and Subset"
 selfOrder: 10
 ---
 
-Filter data by applying conditions on DataFrame columns.
+## Example DataFrame
+Create a DataFrame and filter rows based on conditions to create subsets.
 
 ```python
-filtered_df = df[df['Age'] > 25]
+data = {
+    "Student": ["Alex", "Bella", "Chris"],
+    "Score": [85, 90, 78],
+    "Passed": [True, True, False]
+}
+df = pd.DataFrame(data)
+print(df.head(2))  # Display first 2 rows
+```
+```output
+  Student  Score  Passed
+0    Alex     85    True
+1   Bella     90    True
+```
+
+### Filtering and Subsetting
+```python
+filtered_df = df[df["Score"] > 80]  # Filter rows where Score is greater than 80
 print(filtered_df)
 ```
 ```output
-Rows where Age is greater than 25
+  Student  Score  Passed
+0    Alex     85    True
+1   Bella     90    True
 ```

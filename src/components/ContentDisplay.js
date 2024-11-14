@@ -1,26 +1,21 @@
 import React from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { darcula } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import ReactMarkdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
 import styles from './ContentDisplay.module.css';
 
 const beardedLightTheme = {
-  'code[class*="language-"]': { color: '#ec4476' },  // Default to pink
-
+  'code[class*="language-"]': { color: '#ec4476' },
   'comment': { color: '#7f8c8d', fontStyle: 'italic' },
-  'string': { color: '#0a9621' },                    // Green
-  'number': { color: '#e06900' },                    // Orange
-  'variable': { color: '#ec4476' },                  // Pink
-  'operator': { color: '#0983d5' },                  // Blue for operators like `+`, `-`
-
-  // Built-in functions (e.g., print) prioritized above keywords
-  'builtin': { color: '#0983d5' },                   // Blue for built-ins
-  'support.function': { color: '#0983d5' },          // Blue (another built-in option)
-  'entity.name.function': { color: '#0983d5' },      // Blue for function names
-
-  'keyword': { color: '#c39c00' },                   // Gold (for, in, from, import)
-  'punctuation': { color: '#2c3e50' },               // Dark
-
-  // Additional selectors for comprehensive coverage
+  'string': { color: '#0a9621' },
+  'number': { color: '#e06900' },
+  'variable': { color: '#ec4476' },
+  'operator': { color: '#0983d5' },
+  'builtin': { color: '#0983d5' },
+  'support.function': { color: '#0983d5' },
+  'entity.name.function': { color: '#0983d5' },
+  'keyword': { color: '#c39c00' },
+  'punctuation': { color: '#2c3e50' },
   'plain': { color: '#ec4476' },
   'identifier': { color: '#0983d5' },
   'parameter': { color: '#0983d5' },
@@ -53,72 +48,108 @@ const findContent = (sections, id) => {
   return result;
 };
 
+const CodeBlock = ({ code, output }) => (
+  <div className={styles.codeBlock}>
+    <div className={`${styles.codeContainer} ${!output ? styles.codeContainerSingle : ''}`}>
+      <SyntaxHighlighter
+        language="python"
+        style={beardedLightTheme}
+        customStyle={{
+          margin: 0,
+          padding: '16px',
+          backgroundColor: 'transparent',
+          fontFamily: "'Consolas', monospace",
+          fontSize: '14px',
+          lineHeight: '1.6'
+        }}
+      >
+        {code}
+      </SyntaxHighlighter>
+    </div>
+    {output && (
+      <div className={styles.outputBlock}>
+        {output}
+      </div>
+    )}
+  </div>
+);
+
 const ContentDisplay = ({ selectedItem, content }) => {
   const selected = selectedItem ? findContent(content.sections, selectedItem) : null;
 
+  const renderContent = (description, codeBlocks) => {
+    const textParts = description.split('\n\n');
+    const result = [];
+    let codeBlockIndex = 0;
+
+    textParts.forEach((part, index) => {
+      if (part.trim()) {
+        result.push(
+          <ReactMarkdown
+            key={`text-${index}`}
+            rehypePlugins={[rehypeRaw]}
+            components={{
+              h2: ({ node, ...props }) => (
+                <h2 className={styles.h2Header} {...props} />
+              ),
+              h3: ({ node, ...props }) => (
+                <h3 className={styles.h3Header} {...props} />
+              ),
+              h4: ({ node, ...props }) => (
+                <h4 className={styles.h4Header} {...props} />
+              ),
+              p: ({ node, ...props }) => (
+                <p className={styles.description} {...props} />
+              ),
+              // old
+              // code: ({ node, inline, ...props }) =>
+              //   inline ? (
+              //     <code className={styles.inlineCode} {...props} />
+              //   ) : (
+              //     <code {...props} />
+              //   )
+
+              // new
+              code: ({ node, inline, ...props }) => {
+                const style = inline ? styles.inlineCode : '';
+                return <code className={style} {...props} />
+              }
+            }}
+          >
+            {part}
+          </ReactMarkdown>
+        );
+
+        if (codeBlockIndex < codeBlocks.length) {
+          result.push(
+            <CodeBlock
+              key={`code-${codeBlockIndex}`}
+              code={codeBlocks[codeBlockIndex].code}
+              output={codeBlocks[codeBlockIndex].output}
+            />
+          );
+          codeBlockIndex++;
+        }
+      }
+    });
+
+    return result;
+  };
+
   return (
-    <div className="content">
+    <div className={styles.content}>
       {selected ? (
         <>
-          <h2 style={{
-            marginBottom: '1rem',
-            color: '#2b2b2b'
-          }}>
+          <h2 className={styles.title}>
             {selected.title}
           </h2>
-          <p style={{
-            marginBottom: '1rem',
-            color: '#2b2b2b'
-          }}>
-            {selected.content.description}
-          </p>
-          {selected.content.codeBlocks?.map((block, index) => (
-            <div key={index} style={{ marginBottom: '20px' }}>
-              {/* Input code block */}
-              <div style={{
-                backgroundColor: '#fafaff',
-                borderTopLeftRadius: '6px',
-                borderTopRightRadius: '6px',
-                border: '1px solid #efefef',
-                marginBottom: '0px',
-                overflow: 'hidden'
-              }}>
-                <SyntaxHighlighter
-                  language="python"
-                  style={beardedLightTheme}
-                  customStyle={{
-                    margin: 0,
-                    padding: '16px',
-                    backgroundColor: 'transparent',
-                    fontFamily: "'Consolas', monospace",
-                    fontSize: '14px',
-                    lineHeight: '1.6'
-                  }}
-                >
-                  {block.code}
-                </SyntaxHighlighter>
-              </div>
-
-              {/* Output block */}
-              {block.output && (
-                <div style={{
-                  backgroundColor: '#eef0f2',
-                  borderBottomLeftRadius: '6px',
-                  borderBottomRightRadius: '6px',
-                  border: '1px solid #efefef',
-                  padding: '12px 16px',
-                  fontFamily: "'Consolas', monospace",
-                  fontSize: '14px',
-                  color: '#70798c'
-                }}>
-                  {block.output}
-                </div>
-              )}
-            </div>
-          ))}
+          {renderContent(
+            selected.content.description,
+            selected.content.codeBlocks
+          )}
         </>
       ) : (
-        <p>Select a topic to view details</p>
+        <p className={styles.emptyMessage}>Select a topic to view details</p>
       )}
     </div>
   );
