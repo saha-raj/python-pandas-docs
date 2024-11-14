@@ -14,21 +14,22 @@ const TreeNode = ({
   const isExpanded = expandedNodes.has(node.id);
   const isSelected = node.id === selectedNode;
 
-  const toggleExpand = (e) => {
-    e.stopPropagation();
-    const newExpanded = new Set(expandedNodes);
-    if (isExpanded) {
-      newExpanded.delete(node.id);
-    } else {
-      newExpanded.add(node.id);
-    }
-    setExpandedNodes(newExpanded);
-  };
-
-  const handleClick = () => {
+  const handleClick = (e) => {
+    // If the node has content, select it
     if (node.content) {
       onSelect(node.id);
       setSelectedNode(node.id);
+    }
+
+    // If the node has items, toggle expansion
+    if (hasItems) {
+      const newExpanded = new Set(expandedNodes);
+      if (isExpanded) {
+        newExpanded.delete(node.id);
+      } else {
+        newExpanded.add(node.id);
+      }
+      setExpandedNodes(newExpanded);
     }
   };
 
@@ -46,20 +47,18 @@ const TreeNode = ({
       <div
         className={`tree-node-content ${isSelected ? 'selected' : ''}`}
         style={{
-          marginLeft: `${depth * 16}px`
+          marginLeft: `${depth * 16}px`,
+          cursor: 'pointer' // Add pointer cursor to indicate clickability
         }}
         onClick={handleClick}
       >
-        {hasItems ? (
-          <button
-            className="tree-node-expand-button"
-            onClick={toggleExpand}
-          >
+        {hasItems && (
+          <div className="tree-node-expand-button">
             {isExpanded ? '−' : '+'}
-          </button>
-        ) : (
-          <div className="tree-node-spacer" />
+          </div>
         )}
+
+        {!hasItems && <div className="tree-node-spacer" />}
 
         <span className={`
           tree-node-title

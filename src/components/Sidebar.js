@@ -41,10 +41,7 @@ const Sidebar = ({ content, onSelect }) => {
       const path = findNodePath(content.sections, selected.value);
       setExpandedNodes(new Set(path));
       setSelectedNode(selected.value);
-      onSelect({
-        id: selected.value,
-        title: selected.label  // Pass the title along
-      });
+      onSelect(selected.value);  // Changed from object to just the id
     }
   };
 
