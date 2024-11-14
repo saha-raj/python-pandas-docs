@@ -3,7 +3,7 @@ sections:
     title: "Python"
     items:
       - id: "storing-values"
-        title: "Storing values in memory"
+        title: "Storing values in memoryieee"
         items:
           - id: "Variables"
             title: "Variables"
