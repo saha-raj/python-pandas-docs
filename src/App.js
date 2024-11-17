@@ -6,7 +6,7 @@ import styles from './App.module.css';
 
 function App() {
   const [selectedItem, setSelectedItem] = useState(null);
-  const [docContent, setDocContent] = useState(null); // State to hold fetched content
+  const [docContent, setDocContent] = useState(null);
 
   useEffect(() => {
     const loadContent = async () => {
@@ -17,20 +17,16 @@ function App() {
     loadContent();
   }, []);
 
-  // Show a loading message while content is being fetched
   if (!docContent) return <div>Loading content...</div>;
 
   return (
     <div className={styles.container}>
-      {/* Header */}
       <header className={styles.header}>
         <div className={styles.headerContent}>
           <h1>Fundamentals of Python for Data Analysis</h1>
-          {/* Add your logo or other header content here */}
         </div>
       </header>
 
-      {/* Main content area */}
       <div className={styles.mainArea}>
         <Sidebar content={docContent} onSelect={setSelectedItem} />
         <div className={styles.contentWrapper}>
@@ -38,11 +34,8 @@ function App() {
         </div>
       </div>
 
-      {/* Footer */}
       <footer className={styles.footer}>
-        <div className={styles.footerContent}>
-          © 2024 Raj Saha
-        </div>
+        <div className={styles.footerContent}>© 2024 Raj Saha</div>
       </footer>
     </div>
   );

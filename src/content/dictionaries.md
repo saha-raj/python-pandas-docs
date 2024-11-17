@@ -7,65 +7,89 @@ self: "Dictionaries"
 selfOrder: 40
 ---
 
-## Dictionaries
-Dictionaries are collections of key-value pairs. They are unordered, mutable, and indexed by keys. Each key in a dictionary must be unique.
+## Usage
+Dictionaries store data as key-value pairs. They are unordered, mutable, and use unique keys for indexing.
 
 ```python
+# creating a dictionary with key-value pairs
 person = {"name": "Alice", "age": 25, "city": "New York"}
 print(person)
 ```
+
 ```output
 {'name': 'Alice', 'age': 25, 'city': 'New York'}
 ```
 
 ## Accessing Dictionary Values
-Access values in a dictionary by referring to their keys.
+Access values in a dictionary using their keys.
 
 ```python
-print(person["name"])  # Access value by key
+# accessing value associated with a key
+print(person["name"])
 ```
 ```output
 Alice
 ```
 
+```python
+# accessing value associated with a key
+print(person["age"])
+```
+```output
+25
+```
+
 ## Modifying Dictionaries
-Dictionaries are mutable, so you can add, modify, or remove key-value pairs.
+Add, update, or remove key-value pairs in a dictionary.
 
 ```python
-person["age"] = 26                # Update value
-person["job"] = "Engineer"        # Add new key-value pair
+# updating the value of an existing key
+person["age"] = 26
+
+# adding a new key-value pair
+person["job"] = "Engineer"
 print(person)
 ```
+
 ```output
 {'name': 'Alice', 'age': 26, 'city': 'New York', 'job': 'Engineer'}
 ```
 
 ## Removing Elements
-Use `pop()` or `del` to remove items from a dictionary.
+Remove elements using `pop()` or `del`.
 
 ```python
-person.pop("city")                # Remove item with key 'city'
+# removing an item by key using pop()
+person.pop("city")
 print(person)
-del person["job"]                 # Remove item with key 'job'
+
+# removing an item by key using del
+del person["job"]
 print(person)
 ```
+
 ```output
 {'name': 'Alice', 'age': 26, 'job': 'Engineer'}
 {'name': 'Alice', 'age': 26}
 ```
 
 ## Dictionary Methods
-Dictionaries come with useful methods for accessing keys, values, and items.
+Use dictionary methods to access keys, values, and items.
 
 ```python
-print(person.keys())              # Get all keys
-print(person.values())            # Get all values
-print(person.items())             # Get all key-value pairs
+# getting all keys in the dictionary
+print(person.keys())
+
+# getting all values in the dictionary
+print(person.values())
+
+# getting all key-value pairs in the dictionary
+print(person.items())
 ```
+
 ```output
 dict_keys(['name', 'age'])
 dict_values(['Alice', 26])
 dict_items([('name', 'Alice'), ('age', 26)])
 ```
 
-```

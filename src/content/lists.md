@@ -7,9 +7,11 @@ self: "Lists"
 selfOrder: 20
 ---
 
-Lists are used to store multiple items in a single variable. They are ordered, mutable (changeable), and allow duplicate values.
+## Usage
+Lists store multiple items in a single variable. They are ordered, mutable (changeable), and allow duplicates.
 
 ```python
+# creating a list of colors
 colors = ['red', 'green', 'blue']
 print(colors)
 ```
@@ -18,45 +20,60 @@ print(colors)
 ```
 
 ## Accessing List Elements
-You can access elements in a list using their index. Indexing in Python starts at 0, so the first item is at index 0.
+Access items in a list using their index. Indexing starts at 0.
 
 ```python
-print(colors[0])  # First item
-print(colors[2])  # Third item
+# accessing elements by index
+print(colors[0])  # first item
 ```
-
 ```output
 red
+```
+```python
+# accessing elements by index
+print(colors[2])  # third item
+```
+```output
 blue
 ```
 
 ## Modifying Lists
-Lists are mutable, meaning you can modify their contents after creation. You can change an item by referring to its index or add/remove items.
+Lists can be updated by changing items, adding new ones, or removing existing ones.
 
 ```python
-colors[1] = 'yellow'  # Change 'green' to 'yellow'
-print(colors)
-
-colors.append('purple')  # Add 'purple' to the end
+# changing an item in the list
+colors[1] = 'yellow'  # change 'green' to 'yellow'
 print(colors)
 ```
 ```output
 ['red', 'yellow', 'blue']
+```
+
+```python
+# adding an item to the list
+colors.append('purple')
+print(colors)
+```
+```output
 ['red', 'yellow', 'blue', 'purple']
 ```
 
-## More Info
-You can perform operations like sorting and slicing on lists.
+
+## Operations on Lists
+Lists support operations like sorting and slicing.
 
 ```python
-# Sorting the list
+# sorting the list alphabetically
 colors.sort()
 print(colors)
-
-# Slicing a list to get the first two elements
-print(colors[:2])
 ```
 ```output
 ['blue', 'purple', 'red', 'yellow']
+```
+```python
+# slicing the list to get the first two items
+print(colors[:2])
+```
+```output
 ['blue', 'purple']
 ```

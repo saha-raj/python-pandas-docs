@@ -7,53 +7,78 @@ self: "Variables"
 selfOrder: 10
 ---
 
-Variables are used to store data values in memory. They are like labeled containers that hold values, allowing you to use those values throughout your code.
+## Usage
+Variables are names that store values. They act as labeled containers for data.
 
 ```python
-x = 10
-y = 'ChatGPT'
-
+# assigning values to variables
+x = 42
+y = "Hello"
 print(x)
 print(y)
 ```
-
 ```output
-10
-ChatGPT
+42
+Hello
 ```
 
-## Data Types
-Variables can store various data types, such as integers, strings, floats, and booleans. Here’s an example of different data types stored in variables.
+## Assigning Multiple Variables
+You can assign values to multiple variables in one line.
 
 ```python
-a = 5              # Integer
-b = 3.14           # Float
-c = "Hello World"  # String
-d = True           # Boolean
-
-print(type(a))
-print(type(b))
-print(type(c))
-print(type(d))
+# assigning multiple variables at once
+a, b, c = 1, 2, 3
+print(a)
 ```
+```output
+1
+```
+```python
+print(b)
+```
+```output
+2
+```
+```python
+print(c)
+```
+```output
+3
+```
+
+
+
+## Data Type Storage
+Variables can store different data types such as integers, floats, and strings.
+
+```python
+# examples of storing various data types
+num = 7         # integer
+pi = 3.14       # float
+text = "Python" # string
+
+print(type(num))
+print(type(pi))
+print(type(text))
+```
+
 ```output
 <class 'int'>
 <class 'float'>
 <class 'str'>
-<class 'bool'>
 ```
 
-## Value Reassignment
-Variables can be reassigned new values and can be used in operations to create new variables.
+## Updating Variable Values
+Variables can be reassigned or updated using operations.
 
 ```python
-x = 8
-y = x + 5
-
-print(y)  # y is now 13 and its type is reassigned from string
+# updating the value of a variable
+count = 5
+count = count + 3
+print(count)  # count is now 8
 ```
 
 ```output
-13
+8
 ```
 

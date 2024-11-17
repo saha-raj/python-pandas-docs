@@ -8,20 +8,18 @@ const TreeNode = ({
   expandedNodes,
   setExpandedNodes,
   selectedNode,
-  setSelectedNode
+  setSelectedNode,
 }) => {
   const hasItems = node.items && node.items.length > 0;
   const isExpanded = expandedNodes.has(node.id);
   const isSelected = node.id === selectedNode;
 
-  const handleClick = (e) => {
-    // If the node has content, select it
+  const handleClick = () => {
     if (node.content) {
       onSelect(node.id);
       setSelectedNode(node.id);
     }
 
-    // If the node has items, toggle expansion
     if (hasItems) {
       const newExpanded = new Set(expandedNodes);
       if (isExpanded) {
@@ -39,7 +37,7 @@ const TreeNode = ({
         <div
           className="tree-node-vertical-line"
           style={{
-            left: `${depth * 16 - 8}px`
+            left: `${depth * 16 - 8}px`,
           }}
         />
       )}
@@ -48,23 +46,19 @@ const TreeNode = ({
         className={`tree-node-content ${isSelected ? 'selected' : ''}`}
         style={{
           marginLeft: `${depth * 16}px`,
-          cursor: 'pointer' // Add pointer cursor to indicate clickability
+          cursor: 'pointer',
         }}
         onClick={handleClick}
       >
-        {hasItems && (
+        {hasItems ? (
           <div className="tree-node-expand-button">
             {isExpanded ? '−' : '+'}
           </div>
+        ) : (
+          <div className="tree-node-spacer" />
         )}
 
-        {!hasItems && <div className="tree-node-spacer" />}
-
-        <span className={`
-          tree-node-title
-          ${node.content ? 'has-content' : ''}
-          ${depth === 0 ? 'root' : hasItems ? 'parent' : 'leaf'}
-        `}>
+        <span className={`tree-node-title ${node.content ? 'has-content' : ''} ${depth === 0 ? 'root' : hasItems ? 'parent' : 'leaf'}`}>
           {node.title}
         </span>
       </div>

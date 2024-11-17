@@ -1,5 +1,59 @@
 import yaml from 'js-yaml';
 
+function parseContent(content) {
+  try {
+    // Normalize line endings
+    let normalizedContent = content.replace(/\r\n/g, '\n').trim();
+
+    // Split content into sections using @end-section markers
+    const sections = normalizedContent.split('@end-section').map(section => section.trim());
+    
+    let finalDescription = '';
+    const codeBlocks = [];
+
+    // Process each section
+    sections.forEach(section => {
+      if (!section) return;
+      
+      // Add section text to description with proper spacing
+      finalDescription += section + '\n\n';
+
+      // Extract code blocks from this section
+      const parts = section.split(/```(python|output)?/);
+      let currentBlock = null;
+
+      parts.forEach((part, index) => {
+        if (part === 'python') {
+          currentBlock = { code: parts[index + 1].trim() };
+          codeBlocks.push(currentBlock);
+        } else if (part === 'output' && currentBlock) {
+          currentBlock.output = parts[index + 1].trim();
+          currentBlock = null;
+        }
+      });
+    });
+
+    // Clean up final description
+    finalDescription = finalDescription.trim();
+
+    console.log('Parsed content:', {
+      descriptionLength: finalDescription.length,
+      numCodeBlocks: codeBlocks.length
+    });
+
+    return {
+      description: finalDescription,
+      codeBlocks
+    };
+  } catch (error) {
+    console.error('Error in parseContent:', error);
+    return {
+      description: '',
+      codeBlocks: []
+    };
+  }
+}
+
 export const fetchDocContent = async () => {
   try {
     const mdContext = require.context('!!raw-loader!../content', false, /\.md$/);
@@ -76,54 +130,7 @@ export const fetchDocContent = async () => {
 
     return { sections: tree };
   } catch (error) {
-    console.log("Error:", error);
-    return null;
+    console.error("Error in fetchDocContent:", error);
+    return { sections: [] };
   }
 };
-
-function parseContent(content) {
-  // Normalize line endings and remove empty lines after front matter
-  let normalizedContent = content.replace(/\r\n/g, '\n').trim();
-
-  const parts = normalizedContent.split(/```(python|output)?/);
-  const codeBlocks = [];
-  let description = '';
-  let currentBlock = null;
-
-  parts.forEach((part, index) => {
-    if (part === 'python') {
-      // Store any text that came before this code block
-      const previousText = parts[index - 1];
-      if (previousText && !['python', 'output'].includes(parts[index - 2])) {
-        const text = previousText.trim();
-        if (text) {
-          description += (description ? '\n\n' : '') + text;
-        }
-      }
-      currentBlock = { code: parts[index + 1].trim() };
-      codeBlocks.push(currentBlock);
-    } else if (part === 'output' && currentBlock) {
-      currentBlock.output = parts[index + 1].trim();
-      currentBlock = null;
-    } else if (index === parts.length - 1 && part.trim()) {
-      // Handle any remaining text after the last code block
-      description += (description ? '\n\n' : '') + part.trim();
-    }
-  });
-
-  // Clean up the description: normalize multiple newlines to double newlines
-  description = description
-    .replace(/\n{3,}/g, '\n\n')  // Replace triple+ newlines with double
-    .trim();                      // Remove leading/trailing whitespace
-
-  console.log("Processed content:", {
-    description,
-    codeBlocks,
-    originalContent: normalizedContent
-  });
-
-  return {
-    description,
-    codeBlocks
-  };
-}

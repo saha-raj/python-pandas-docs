@@ -1,12 +1,14 @@
 import React from 'react';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import styles from './ContentDisplay.module.css';
 
 const beardedLightTheme = {
   'code[class*="language-"]': { color: '#ec4476' },
-  'comment': { color: '#7f8c8d', fontStyle: 'italic' },
+  // 'comment': { color: '#7f8c8d', fontStyle: 'italic' }, 
+  'comment': { color: '#A9B2B2', fontStyle: 'italic' },
   'string': { color: '#0a9621' },
   'number': { color: '#e06900' },
   'variable': { color: '#ec4476' },
@@ -26,7 +28,6 @@ const beardedLightTheme = {
 
 const findContent = (sections, id) => {
   let result = null;
-
   const search = (items) => {
     for (const item of items) {
       if (item.id === id) {
@@ -40,7 +41,7 @@ const findContent = (sections, id) => {
     return null;
   };
 
-  sections.forEach(section => {
+  sections.forEach((section) => {
     const found = search([section]);
     if (found) result = found;
   });
@@ -56,11 +57,11 @@ const CodeBlock = ({ code, output }) => (
         style={beardedLightTheme}
         customStyle={{
           margin: 0,
-          padding: '16px',
+          padding: '5px',
           backgroundColor: 'transparent',
           fontFamily: "'Consolas', monospace",
           fontSize: '14px',
-          lineHeight: '1.6'
+          lineHeight: '1.6',
         }}
       >
         {code}
@@ -77,80 +78,73 @@ const CodeBlock = ({ code, output }) => (
 const ContentDisplay = ({ selectedItem, content }) => {
   const selected = selectedItem ? findContent(content.sections, selectedItem) : null;
 
+  if (!selected) {
+    return <p className={styles.emptyMessage}>Select a topic to view details</p>;
+  }
+
   const renderContent = (description, codeBlocks) => {
-    const textParts = description.split('\n\n');
-    const result = [];
-    let codeBlockIndex = 0;
-
-    textParts.forEach((part, index) => {
-      if (part.trim()) {
-        result.push(
-          <ReactMarkdown
-            key={`text-${index}`}
-            rehypePlugins={[rehypeRaw]}
-            components={{
-              h2: ({ node, ...props }) => (
-                <h2 className={styles.h2Header} {...props} />
-              ),
-              h3: ({ node, ...props }) => (
-                <h3 className={styles.h3Header} {...props} />
-              ),
-              h4: ({ node, ...props }) => (
-                <h4 className={styles.h4Header} {...props} />
-              ),
-              p: ({ node, ...props }) => (
-                <p className={styles.description} {...props} />
-              ),
-              // old
-              // code: ({ node, inline, ...props }) =>
-              //   inline ? (
-              //     <code className={styles.inlineCode} {...props} />
-              //   ) : (
-              //     <code {...props} />
-              //   )
-
-              // new
-              code: ({ node, inline, ...props }) => {
-                const style = inline ? styles.inlineCode : '';
-                return <code className={style} {...props} />
-              }
-            }}
-          >
-            {part}
-          </ReactMarkdown>
-        );
-
-        if (codeBlockIndex < codeBlocks.length) {
-          result.push(
-            <CodeBlock
-              key={`code-${codeBlockIndex}`}
-              code={codeBlocks[codeBlockIndex].code}
-              output={codeBlocks[codeBlockIndex].output}
-            />
-          );
-          codeBlockIndex++;
-        }
-      }
+    // Split content into sections at each header
+    const sections = description.split(/(?=## )/).filter(Boolean);
+    
+    // Count code blocks per section by looking for python blocks
+    const codeBlockCounts = sections.map(section => 
+      (section.match(/```python/g) || []).length
+    );
+  
+    // Now we can distribute code blocks correctly
+    let blockIndex = 0;
+    return sections.map((section, i) => {
+      // Get the code blocks for this section
+      const sectionCodeBlocks = codeBlocks.slice(
+        blockIndex, 
+        blockIndex + codeBlockCounts[i]
+      );
+      blockIndex += codeBlockCounts[i];
+  
+      // Remove code blocks from the text content
+      const textContent = section
+        .replace(/@end-section/, '')  // Remove section marker
+        .replace(/```python[\s\S]*?```output[\s\S]*?```/g, '') // Remove code blocks
+        .trim();
+  
+      return (
+        <div key={i} className={styles.contentRow}>
+          <div className={styles.textCell}>
+            <ReactMarkdown
+              rehypePlugins={[rehypeRaw]}
+              remarkPlugins={[remarkGfm]}
+              components={{
+                h2: ({ node, ...props }) => <h2 className={styles.h2Header} {...props} />,
+                h3: ({ node, ...props }) => <h3 className={styles.h3Header} {...props} />,
+                h4: ({ node, ...props }) => <h4 className={styles.h4Header} {...props} />,
+                p: ({ node, ...props }) => <p className={styles.description} {...props} />,
+                code: ({ node, inline, ...props }) => {
+                  const style = inline ? styles.inlineCode : '';
+                  return <code className={style} {...props} />;
+                },
+              }}
+            >
+              {textContent}
+            </ReactMarkdown>
+          </div>
+          <div className={styles.codeCell}>
+            {sectionCodeBlocks.map((block, j) => (
+              <CodeBlock 
+                key={`${i}-${j}`}
+                code={block.code}
+                output={block.output}
+              />
+            ))}
+          </div>
+        </div>
+      );
     });
-
-    return result;
   };
 
   return (
     <div className={styles.content}>
-      {selected ? (
-        <>
-          <h2 className={styles.title}>
-            {selected.title}
-          </h2>
-          {renderContent(
-            selected.content.description,
-            selected.content.codeBlocks
-          )}
-        </>
-      ) : (
-        <p className={styles.emptyMessage}>Select a topic to view details</p>
-      )}
+      <h2 className={styles.title}>{selected.title}</h2>
+      {renderContent(selected.content.description, selected.content.codeBlocks)}
     </div>
   );
 };
