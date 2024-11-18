@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/python-pandas-docs/static/css/main.5c6a9a0d.css",
-    "main.js": "/python-pandas-docs/static/js/main.956c831a.js",
+    "main.css": "/python-pandas-docs/static/css/main.c259528d.css",
+    "main.js": "/python-pandas-docs/static/js/main.03995a3f.js",
     "static/js/453.22e6475a.chunk.js": "/python-pandas-docs/static/js/453.22e6475a.chunk.js",
     "index.html": "/python-pandas-docs/index.html",
-    "main.5c6a9a0d.css.map": "/python-pandas-docs/static/css/main.5c6a9a0d.css.map",
-    "main.956c831a.js.map": "/python-pandas-docs/static/js/main.956c831a.js.map",
+    "main.c259528d.css.map": "/python-pandas-docs/static/css/main.c259528d.css.map",
+    "main.03995a3f.js.map": "/python-pandas-docs/static/js/main.03995a3f.js.map",
     "453.22e6475a.chunk.js.map": "/python-pandas-docs/static/js/453.22e6475a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5c6a9a0d.css",
-    "static/js/main.956c831a.js"
+    "static/css/main.c259528d.css",
+    "static/js/main.03995a3f.js"
   ]
 }
