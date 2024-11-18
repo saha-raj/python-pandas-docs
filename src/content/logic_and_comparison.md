@@ -1,13 +1,13 @@
 ---
 grandParent: "Python"
 grandParentOrder: 10
-parent: "Manipulating values"
+parent: "Data Manipulation"
 parentOrder: 20
 self: "Logic and Comparison"
 selfOrder: 20
 ---
 
-## Logic and Comparison
+## Basic Logic and Comparison Operations
 Use logical operators (`and`, `or`, `not`) and comparison operators (`==`, `!=`, `<`, `>`, `<=`, `>=`) to compare values and combine conditions.
 
 ```python

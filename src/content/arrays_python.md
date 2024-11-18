@@ -1,12 +1,13 @@
 ---
 grandParent: "Python"
 grandParentOrder: 10
-parent: "Storing values in memory"
+parent: "Data Structures"
 parentOrder: 10
-self: "Arrays (Python built-in)"
+self: "Arrays (built-in Python)"
 selfOrder: 28
 ---
 
+## Usage
 Python's `array` module allows storing and manipulating data of the same type efficiently. Unlike lists, all array elements must share the same type.
 
 ```python
@@ -138,3 +139,37 @@ print(chars)
 array('u', 'abc')
 ```
 
+## 2D Arrays
+Python doesn't have built-in support for 2D arrays, but you can create a nested list to represent a 2D array.
+
+```python
+# creating a 2D array using a nested list
+matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+print(matrix)
+```
+```output
+[[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+```
+
+To access elements in a 2D array, use two indices: the first for the row and the second for the column.
+
+```python
+# accessing an element in a 2D array
+print(matrix[1][2])
+```
+```output
+6
+```
+You can also use nested loops to iterate through a 2D array.
+```python
+# iterating through a 2D array
+for row in matrix:
+    for item in row:
+        print(item, end=' ')
+    print()
+```
+```output
+1 2 3 
+4 5 6
+7 8 9
+```

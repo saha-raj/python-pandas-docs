@@ -4,6 +4,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import styles from './ContentDisplay.module.css';
+import { defaultProps } from 'react-syntax-highlighter';
 
 const beardedLightTheme = {
   'code[class*="language-"]': { color: '#ec4476' },
@@ -25,6 +26,8 @@ const beardedLightTheme = {
   'property': { color: '#0983d5' },
   'constant': { color: '#e06900' }
 };
+
+
 
 const findContent = (sections, id) => {
   let result = null;
