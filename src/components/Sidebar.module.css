@@ -4,7 +4,8 @@
     background-color: #fff;
     border-right: 1px solid #e5e7eb;
     overflow-y: auto;
-    
+    font-family: 'Consolas', monospace;
+    font-family: "Share Tech Mono", monospace;
 }
 
 .sidebarSearch {
@@ -15,6 +16,7 @@
 
 .sidebarTree {
     padding-left: 14px;
+
 }
 
 /* Common font style for all select elements */
@@ -24,6 +26,7 @@
 .select :global(.select__single-value),
 .select :global(.select__option) {
     font-family: 'Noto Sans', sans-serif;
+    
 }
 
 /* Input box container */
