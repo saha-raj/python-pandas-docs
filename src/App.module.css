@@ -15,12 +15,27 @@
 .headerContent {
     padding: 1rem 2rem;
     padding-left: 1rem;
+    display: flex;
+    align-items: center;
 }
 
+.headerLogo {
+    height: 40px;              /* Set appropriate size for the logo */
+    margin-right: 15px;        /* Space between logo and text */
+  }
+
 .headerContent h1 {
+    /* font-family: "Major Mono Display", monospace; */
+    font-family: "Share Tech Mono", monospace;
     margin: 0;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     color: #297496;
+    color: #ec4476;
+    color: #e5989b;
+    /* color: #f07167;
+    color: #fe6d73;
+    color: #59c3c3;
+    color: #067bc2; */
 }
 
 /* Main area styles */
@@ -43,7 +58,7 @@
     /* This targets the ContentDisplay component */
     width: 90%;
     /* Takes only 60% of the available space */
-    padding-top: 20px;
+    padding-top: 0px;
     padding-left: 40px;
 }
 

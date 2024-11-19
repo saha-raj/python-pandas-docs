@@ -21,6 +21,8 @@
 
 .tree-node-content.selected {
     background-color: #ffd8a8;
+    background-color: #F9CBC7;
+    /* color: #ffffff; */
 }
 
 .tree-node-expand-button {
@@ -74,4 +76,5 @@
 
 .tree-node-content.selected:hover {
     background-color: #ffd8a8;
+    background-color: #F9CBC7;
 }

@@ -4,11 +4,13 @@
     background-color: #fff;
     border-right: 1px solid #e5e7eb;
     overflow-y: auto;
+    
 }
 
 .sidebarSearch {
     margin-bottom: 20px;
     padding: 14px;
+    margin-top: 20px;
 }
 
 .sidebarTree {

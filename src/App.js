@@ -3,6 +3,8 @@ import Sidebar from './components/Sidebar';
 import ContentDisplay from './components/ContentDisplay';
 import { fetchDocContent } from './data/content';
 import styles from './App.module.css';
+import logo from './assets/python_origami_logo.png'; // Import your logo image
+
 
 function App() {
   const [selectedItem, setSelectedItem] = useState(null);
@@ -23,6 +25,8 @@ function App() {
     <div className={styles.container}>
       <header className={styles.header}>
         <div className={styles.headerContent}>
+          <img src={logo} alt="Logo" className={styles.headerLogo} /> {/* Add logo image */}
+
           <h1>Fundamentals of Python for Data Analysis</h1>
         </div>
       </header>

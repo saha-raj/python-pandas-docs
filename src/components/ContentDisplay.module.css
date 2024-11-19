@@ -1,78 +1,99 @@
 /* Basic Layout */
 .content {
+    /* Remove default padding and margin from the top */
     padding-top: 0;
     margin-top: 0;
 }
 
 .contentRow {
+    /* Create a grid layout for the content row */
     display: grid;
-    grid-template-columns: 400px 500px;
+    /* Define the column widths using minmax() */
+    grid-template-columns: minmax(400px, 0.5fr) minmax(500px, 1fr);
+    /* Set the gap between grid items */
     gap: 20px;
+    /* Add margin at the bottom of each row */
     margin-bottom: 20px;
+    /* Align grid items to the start of the row */
     align-items: start;
 }
 
 .textCell {
+    /* Add padding to the right of the text cell */
     padding-right: 20px;
 }
 
 /* Typography */
 .title {
+    /* Set the font family, size, weight, and color for the title */
     font-family: 'Noto Sans', sans-serif;
     font-size: 32px;
     font-weight: 800;
     color: #3d5a80;
+    /* Add margin at the bottom of the title */
     margin-bottom: 1.5rem;
 }
 
 .description {
+    /* Set the font family, size, line height, and color for the description */
     font-family: 'Noto Sans', sans-serif;
     font-size: 16px;
     line-height: 1.6;
-    /* color: #386fa4; */
     color: #607b7d;
+    /* Add margin at the top and bottom of the description */
     margin: 0.5rem 0 1rem;
 }
 
 .emptyMessage {
+    /* Set the font family, size, and color for the empty message */
     font-family: 'Noto Sans', sans-serif;
     font-size: 16px;
     color: #666;
+    /* Add padding at the top and bottom of the empty message */
     padding: 20px 0;
 }
 
 /* Headers */
 .h2Header {
-    /* color: #3d5a80; */
+    /* Set the color, font size, and weight for h2 headers */
     color: #3a606e;
-    
     font-size: 1.3rem;
     font-weight: 600;
+    /* Remove default margins */
     margin: 0;
     padding: 0;
 }
 
 .h3Header {
+    /* Set the color, font size, and weight for h3 headers */
     color: #3d5a80;
     font-size: 1.25rem;
     font-weight: 500;
+    /* Add margin at the top and bottom of h3 headers */
     margin: 1.5rem 0 1rem;
 }
 
 .h4Header {
+    /* Set the color, font size, and weight for h4 headers */
     color: #3d5a80;
     font-size: 1rem;
     font-weight: 500;
+    /* Add margin at the top and bottom of h4 headers */
     margin: 1rem 0 0.5rem;
 }
 
 /* Code Styles */
 .codeBlock {
+    /* Add margin at the bottom of code blocks */
     margin-bottom: 10px;
 }
 
 .codeContainer {
-    background-color: #fafaff;
+    /* Set the background color, border, border radius, overflow, and padding for code containers */
+    /* background-color: #fafaff; */
+    background-color: #f8f9fa; 
+    /* #f8f9fa */
+    
     border: 1px solid #efefef;
     border-radius: 6px;
     overflow: hidden;
@@ -80,17 +101,20 @@
 }
 
 .codeContainer:not(.codeContainerSingle) {
+    /* Remove the bottom border radius for code containers that are not single */
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
 }
 
 .outputBlock {
+    /* Set the background color, border, border radius, color, font family, font size, line height, margin, padding, and white-space for output blocks */
     background-color: #eef0f2;
+    /* background-color: #E7EBEE; */
     border: 1px solid #efefef;
     border-top: none;
     border-bottom-left-radius: 6px;
     border-bottom-right-radius: 6px;
-    color: #70798c;
+    color: #8894AA;
     font-family: 'Consolas', monospace;
     font-size: 14px;
     line-height: 1.6;
@@ -101,6 +125,7 @@
 }
 
 .description code {
+    /* Set the background color, border radius, color, font family, font size, font weight, and padding for inline code in descriptions */
     background-color: #f3f4f6;
     border-radius: 3px;
     color: #118ab2;
@@ -113,11 +138,16 @@
 /* Responsive */
 @media (max-width: 1200px) {
     .contentRow {
+        /* Change the grid layout to a single column on smaller screens */
         grid-template-columns: 1fr;
-        max-width: 90%;
+        /* Set the maximum width to 100% */
+        max-width: 100%;
+        /* Add padding on the left and right */
+        padding: 0 0px;
     }
 
     .textCell {
+        /* Remove the right padding on smaller screens */
         padding-right: 0;
     }
 }
