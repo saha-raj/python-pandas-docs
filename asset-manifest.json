@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/python-pandas-docs/static/css/main.429cda33.css",
-    "main.js": "/python-pandas-docs/static/js/main.356f3f81.js",
+    "main.js": "/python-pandas-docs/static/js/main.ba7e5353.js",
     "static/js/453.22e6475a.chunk.js": "/python-pandas-docs/static/js/453.22e6475a.chunk.js",
     "static/media/python_origami_logo.png": "/python-pandas-docs/static/media/python_origami_logo.6e68643fa5e94c8abfb2.png",
     "index.html": "/python-pandas-docs/index.html",
     "main.429cda33.css.map": "/python-pandas-docs/static/css/main.429cda33.css.map",
-    "main.356f3f81.js.map": "/python-pandas-docs/static/js/main.356f3f81.js.map",
+    "main.ba7e5353.js.map": "/python-pandas-docs/static/js/main.ba7e5353.js.map",
     "453.22e6475a.chunk.js.map": "/python-pandas-docs/static/js/453.22e6475a.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.429cda33.css",
-    "static/js/main.356f3f81.js"
+    "static/js/main.ba7e5353.js"
   ]
 }
