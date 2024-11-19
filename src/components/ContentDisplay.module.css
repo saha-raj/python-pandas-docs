@@ -65,6 +65,20 @@
     padding: 0;
 }
 
+.h2Header code {
+    /* background-color: 'red'; */
+    background-color: #f8f9fa; 
+    /* #f8f9fa */
+    
+    border: 1px solid #efefef;
+    border-radius: 3px;
+    color: #118ab2;
+    font-family: 'Consolas', monospace;
+    font-size: 0.9em;
+    font-weight: 400;
+    padding: 2px 5px;
+}
+
 .h3Header {
     /* Set the color, font size, and weight for h3 headers */
     color: #3d5a80;
