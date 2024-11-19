@@ -1,10 +1,12 @@
-import React from 'react';
+// import React from 'react';
+import React, { useEffect, useState } from 'react';
+
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import styles from './ContentDisplay.module.css';
-import { defaultProps } from 'react-syntax-highlighter';
+
 
 const beardedLightTheme = {
   'code[class*="language-"]': { color: '#ec4476' },
@@ -258,37 +260,97 @@ const CodeBlock = ({ code, output }) => (
 );
 
 const ContentDisplay = ({ selectedItem, content }) => {
+  const [homeMarkdown, setHomeMarkdown] = useState('');
+
+  // Fetch `home.md` when no item is selected
+  useEffect(() => {
+    if (!selectedItem) {
+      fetch(`${process.env.PUBLIC_URL}/home.md`)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.text();
+        })
+        .then((text) => {
+          setHomeMarkdown(text);
+        })
+        .catch((error) => {
+          console.error("Error fetching home.md:", error);
+        });
+    }
+  }, [selectedItem]);
+
   const selected = selectedItem ? findContent(content.sections, selectedItem) : null;
 
+  // Render the home.md content when nothing is selected
+  // if (!selected) {
+  //   return (
+  //     <div className={`${styles.content} ${styles.homeContent}`}>
+  //       {homeMarkdown ? (
+  //         <ReactMarkdown rehypePlugins={[rehypeRaw]} remarkPlugins={[remarkGfm]}>
+  //           {homeMarkdown}
+  //         </ReactMarkdown>
+  //       ) : (
+  //         <p className={styles.emptyMessage}>Loading content...</p>
+  //       )}
+  //     </div>
+  //   );
+  // }
   if (!selected) {
-    return <p className={styles.emptyMessage}>Select a topic to view details</p>;
+    return (
+      <div className={`${styles.content} ${styles.homeContent}`}>
+        {homeMarkdown ? (
+          <ReactMarkdown
+            rehypePlugins={[rehypeRaw]}
+            remarkPlugins={[remarkGfm]}
+            components={{
+              img: ({ alt, src, ...props }) => {
+                // Ensure the image src is correct by forcing absolute path
+                const updatedSrc = src.startsWith('/')
+                  ? `${process.env.PUBLIC_URL}${src}`
+                  : src;
+
+                return (
+                  <img
+                    alt={alt}
+                    src={updatedSrc}
+                    style={{ maxWidth: '100%', height: 'auto', margin: '20px 0' }}
+                    {...props}
+                  />
+                );
+              },
+            }}
+          >
+            {homeMarkdown}
+          </ReactMarkdown>
+        ) : (
+          <p className={styles.emptyMessage}>Loading content...</p>
+        )}
+      </div>
+    );
   }
 
+  // Original rendering logic for selected content
   const renderContent = (description, codeBlocks) => {
-    // Split content into sections at each header
     const sections = description.split(/(?=## )/).filter(Boolean);
-    
-    // Count code blocks per section by looking for python blocks
-    const codeBlockCounts = sections.map(section => 
+    const codeBlockCounts = sections.map((section) =>
       (section.match(/```python/g) || []).length
     );
-  
-    // Now we can distribute code blocks correctly
+
     let blockIndex = 0;
     return sections.map((section, i) => {
-      // Get the code blocks for this section
       const sectionCodeBlocks = codeBlocks.slice(
-        blockIndex, 
+        blockIndex,
         blockIndex + codeBlockCounts[i]
       );
       blockIndex += codeBlockCounts[i];
-  
-      // Remove code blocks from the text content
+
       const textContent = section
-        .replace(/@end-section/, '')  // Remove section marker
-        .replace(/```python[\s\S]*?```output[\s\S]*?```/g, '') // Remove code blocks
+        .replace(/@end-section/, '')
+        .replace(/```python[\s\S]*?```output[\s\S]*?```/g, '')
         .trim();
-  
+
       return (
         <div key={i} className={styles.contentRow}>
           <div className={styles.textCell}>
@@ -311,11 +373,7 @@ const ContentDisplay = ({ selectedItem, content }) => {
           </div>
           <div className={styles.codeCell}>
             {sectionCodeBlocks.map((block, j) => (
-              <CodeBlock 
-                key={`${i}-${j}`}
-                code={block.code}
-                output={block.output}
-              />
+              <CodeBlock key={`${i}-${j}`} code={block.code} output={block.output} />
             ))}
           </div>
         </div>

@@ -1,4 +1,5 @@
 import yaml from 'js-yaml';
+// import { homeContent } from './homeContent';
 
 function parseContent(content) {
   try {
@@ -58,6 +59,9 @@ export const fetchDocContent = async () => {
   try {
     const mdContext = require.context('!!raw-loader!../content', false, /\.md$/);
     const mdFiles = mdContext.keys();
+
+    // home content
+    // const parsedHomeContent = parseContent(homeContent);
 
     // Process files
     const processedFiles = mdFiles.map(filename => {

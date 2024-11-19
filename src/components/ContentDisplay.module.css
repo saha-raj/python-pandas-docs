@@ -51,6 +51,7 @@
     color: #666;
     /* Add padding at the top and bottom of the empty message */
     padding: 20px 0;
+    margin: 20px;
 }
 
 /* Headers */
@@ -151,3 +152,50 @@
         padding-right: 0;
     }
 }
+
+/* Content specific to home.md */
+/* Home Content Container */
+.homeContent {
+    max-width: 600px;  /* Set the maximum width for the content */
+    /* width: 100%;        Make it responsive to smaller screens */
+    /* margin: 0 auto;     Center the content on the page */
+    /* padding: 20px;      Add some padding for aesthetics */
+    /* box-sizing: border-box;  Ensure padding is included in width calculations */
+  }
+
+  
+.homeContent h1 {
+    font-family: 'Noto Sans', sans-serif;
+    color: #3d5a80;
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+    font-size: 2rem;
+  }
+.homeContent h2,
+.homeContent h3 {
+  font-family: 'Noto Sans', sans-serif;
+  color: #3d5a80;
+  margin-bottom: 1rem;
+}
+
+.homeContent p {
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 1rem;
+  color: #607b7d;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.homeContent ul {
+  padding-left: 20px;
+  margin-bottom: 1rem;
+}
+
+.homeContent li {
+  margin-bottom: 0.5rem;
+}
+
+.homeContent a {
+    color: #00a5cf;
+    text-decoration: none;
+  }
