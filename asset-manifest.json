@@ -1,15 +1,16 @@
 {
   "files": {
-    "main.css": "/python-pandas-docs/static/css/main.c259528d.css",
-    "main.js": "/python-pandas-docs/static/js/main.03995a3f.js",
+    "main.css": "/python-pandas-docs/static/css/main.a802c6f0.css",
+    "main.js": "/python-pandas-docs/static/js/main.696652e2.js",
     "static/js/453.22e6475a.chunk.js": "/python-pandas-docs/static/js/453.22e6475a.chunk.js",
+    "static/media/python_origami_logo.png": "/python-pandas-docs/static/media/python_origami_logo.6e68643fa5e94c8abfb2.png",
     "index.html": "/python-pandas-docs/index.html",
-    "main.c259528d.css.map": "/python-pandas-docs/static/css/main.c259528d.css.map",
-    "main.03995a3f.js.map": "/python-pandas-docs/static/js/main.03995a3f.js.map",
+    "main.a802c6f0.css.map": "/python-pandas-docs/static/css/main.a802c6f0.css.map",
+    "main.696652e2.js.map": "/python-pandas-docs/static/js/main.696652e2.js.map",
     "453.22e6475a.chunk.js.map": "/python-pandas-docs/static/js/453.22e6475a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c259528d.css",
-    "static/js/main.03995a3f.js"
+    "static/css/main.a802c6f0.css",
+    "static/js/main.696652e2.js"
   ]
 }
