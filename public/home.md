@@ -1,6 +1,4 @@
-# Welcome
-
-<!-- ![Welcome Image](/assets/python_origami_logo.png) -->
+# Welcome!
 
 <img src="/assets/python_origami_logo.png" alt="Welcome Image" 
 style="max-width: 400px; height: auto; border-radius: 10px; display: block-left; margin: 20px auto;" />
