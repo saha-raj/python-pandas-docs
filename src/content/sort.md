@@ -1,10 +1,10 @@
 ---
 grandParent: "Pandas"
 grandParentOrder: 20
-parent: "Data Inspection"
+parent: "Viewing & Selecting"
 parentOrder: 20
 self: "Sorting"
-selfOrder: 25
+selfOrder: 35
 ---
 
 ## Basic Sorting

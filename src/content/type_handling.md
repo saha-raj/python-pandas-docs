@@ -1,7 +1,7 @@
 ---
 grandParent: "Pandas"
 grandParentOrder: 20
-parent: "Data Cleaning"
+parent: "Cleaning"
 parentOrder: 30
 self: "Type Handling"
 selfOrder: 30

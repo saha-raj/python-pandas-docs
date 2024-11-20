@@ -1,7 +1,7 @@
 ---
 grandParent: "Pandas"
 grandParentOrder: 20
-parent: "Data Transformation"
+parent: "Transforming"
 parentOrder: 55
 self: "Data Transformation"
 selfOrder: 10

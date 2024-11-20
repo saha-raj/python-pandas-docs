@@ -1,7 +1,7 @@
 ---
 grandParent: "Pandas"
 grandParentOrder: 20
-parent: "Data Cleaning"
+parent: "Cleaning"
 parentOrder: 35
 self: "Data Validation"
 selfOrder: 20

@@ -1,7 +1,7 @@
 ---
 grandParent: "Pandas"
 grandParentOrder: 20
-parent: "Data Inspection"
+parent: "Viewing & Selecting"
 parentOrder: 20
 self: "Boolean Filtering"
 selfOrder: 40
@@ -55,7 +55,7 @@ print(df.query('age > 25 and city == "NY"'))
 ```
 
 ## String Filters
-Filter based on string patterns using string methods like contains, `startswith`, `endswith`.
+Filter based on string patterns using string methods like `contains`, `startswith`, `endswith`.
 
 ```python
 df = pd.DataFrame({

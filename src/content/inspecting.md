@@ -1,9 +1,9 @@
 ---
 grandParent: "Pandas"
 grandParentOrder: 20
-parent: "Data Inspection"
+parent: "Viewing & Selecting"
 parentOrder: 20
-self: "Viewing / Inspecting"
+self: "Inspecting"
 selfOrder: 10
 ---
 

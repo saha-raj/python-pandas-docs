@@ -1,7 +1,7 @@
 ---
 grandParent: "Pandas"
 grandParentOrder: 20
-parent: "Combining Data"
+parent: "Combining"
 parentOrder: 80
 self: "Merge and Join"
 selfOrder: 10
