@@ -1,3 +1,4 @@
+// TreeNode.js
 import React from 'react';
 import './TreeNode.css';
 
@@ -8,18 +9,13 @@ const TreeNode = ({
   expandedNodes,
   setExpandedNodes,
   selectedNode,
-  setSelectedNode,
 }) => {
   const hasItems = node.items && node.items.length > 0;
   const isExpanded = expandedNodes.has(node.id);
   const isSelected = node.id === selectedNode;
 
   const handleClick = () => {
-    if (node.content) {
-      onSelect(node.id);
-      setSelectedNode(node.id);
-    }
-
+    // Toggle the node expansion if it has items
     if (hasItems) {
       const newExpanded = new Set(expandedNodes);
       if (isExpanded) {
@@ -29,6 +25,11 @@ const TreeNode = ({
       }
       setExpandedNodes(newExpanded);
     }
+
+    // If the node has content, select it
+    if (node.content) {
+      onSelect({ value: node.id, label: node.title });
+    }
   };
 
   return (
@@ -36,18 +37,13 @@ const TreeNode = ({
       {depth > 0 && (
         <div
           className="tree-node-vertical-line"
-          style={{
-            left: `${depth * 16 - 8}px`,
-          }}
+          style={{ left: `${depth * 16 - 8}px` }}
         />
       )}
 
       <div
         className={`tree-node-content ${isSelected ? 'selected' : ''}`}
-        style={{
-          marginLeft: `${depth * 16}px`,
-          cursor: 'pointer',
-        }}
+        style={{ marginLeft: `${depth * 16}px`, cursor: 'pointer' }}
         onClick={handleClick}
       >
         {hasItems ? (
@@ -74,7 +70,6 @@ const TreeNode = ({
               expandedNodes={expandedNodes}
               setExpandedNodes={setExpandedNodes}
               selectedNode={selectedNode}
-              setSelectedNode={setSelectedNode}
             />
           ))}
         </div>

@@ -1,16 +1,56 @@
-import React, { useState } from 'react';
+// Sidebar.js
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import Select from 'react-select';
 import TreeNode from './TreeNode';
-import { flattenContent, findNodePath } from '../utils/utils';
 import styles from './Sidebar.module.css';
 
 const Sidebar = ({ content, onSelect }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const [expandedNodes, setExpandedNodes] = useState(new Set());
   const [selectedNode, setSelectedNode] = useState(null);
 
+  // Directly add findNodePath function here
+  const findNodePath = (sections, nodeId) => {
+    const path = [];
+
+    const search = (nodes, currentPath = []) => {
+      for (const node of nodes) {
+        const newPath = [...currentPath, node.id];
+        if (node.id === nodeId) {
+          path.push(...newPath);
+          return true;
+        }
+        if (node.items && search(node.items, newPath)) {
+          return true;
+        }
+      }
+      return false;
+    };
+
+    search(sections);
+    return path;
+  };
+
+  // Expand relevant nodes when loading directly from URL
+  useEffect(() => {
+    const urlPath = location.pathname.split('/').pop();
+    if (urlPath && urlPath !== 'python-pandas-docs') {
+      const path = findNodePath(content.sections, urlPath);
+      if (path.length > 0) {
+        setExpandedNodes(new Set(path.slice(0, -1))); // Expand grandparent and parent
+        setSelectedNode(urlPath);
+        onSelect(urlPath);
+      }
+    } else {
+      setSelectedNode(null);
+      setExpandedNodes(new Set());
+    }
+  }, [location.pathname, content]);
+
   const getSearchOptions = (sections) => {
     let options = [];
-
     const processNode = (node, parentPath = '') => {
       const currentPath = parentPath ? `${parentPath} > ${node.title}` : node.title;
 
@@ -35,10 +75,17 @@ const Sidebar = ({ content, onSelect }) => {
 
   const handleSelect = (selected) => {
     if (selected) {
-      const path = findNodePath(content.sections, selected.value);
-      setExpandedNodes(new Set(path));
-      setSelectedNode(selected.value);
-      onSelect(selected.value);
+      const selectedId = selected.value;
+
+      // Update expanded nodes to ensure only the grandparent and parent are expanded
+      const path = findNodePath(content.sections, selectedId);
+      const newExpandedNodes = new Set(path.slice(0, -1)); // Expand only grandparent and parent
+      setExpandedNodes(newExpandedNodes);
+
+      // Set the selected node and update URL
+      setSelectedNode(selectedId);
+      navigate(`/python-pandas-docs/${selectedId}`);
+      onSelect(selectedId);
     }
   };
 
@@ -60,7 +107,7 @@ const Sidebar = ({ content, onSelect }) => {
             key={section.id}
             node={section}
             depth={0}
-            onSelect={onSelect}
+            onSelect={handleSelect}
             expandedNodes={expandedNodes}
             setExpandedNodes={setExpandedNodes}
             selectedNode={selectedNode}

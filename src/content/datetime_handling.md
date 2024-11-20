@@ -3,7 +3,7 @@ grandParent: "Pandas"
 grandParentOrder: 20
 parent: "Cleaning"
 parentOrder: 35
-self: "Date/Time Handling"
+self: "Date and Time Handling"
 selfOrder: 40
 ---
 
