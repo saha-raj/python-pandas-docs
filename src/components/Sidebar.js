@@ -36,7 +36,7 @@ const Sidebar = ({ content, onSelect }) => {
   // Expand relevant nodes when loading directly from URL
   useEffect(() => {
     const urlPath = location.pathname.split('/').pop();
-    if (urlPath && urlPath !== 'python-pandas-docs') {
+    if (urlPath && urlPath !== '') {
       const path = findNodePath(content.sections, urlPath);
       if (path.length > 0) {
         setExpandedNodes(new Set(path.slice(0, -1))); // Expand grandparent and parent
@@ -84,7 +84,7 @@ const Sidebar = ({ content, onSelect }) => {
 
       // Set the selected node and update URL
       setSelectedNode(selectedId);
-      navigate(`/python-pandas-docs/${selectedId}`);
+      navigate(`/${selectedId}`);
       onSelect(selectedId);
     }
   };

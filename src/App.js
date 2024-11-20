@@ -1,6 +1,6 @@
 // App.js
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes, useNavigate, useParams, useLocation } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes, useParams, useNavigate, useLocation } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import ContentDisplay from './components/ContentDisplay';
 import { fetchDocContent } from './data/content';
@@ -37,11 +37,11 @@ function App() {
           <div className={styles.contentWrapper}>
             <Routes>
               <Route
-                path="/python-pandas-docs/"
+                path="/"
                 element={<ContentDisplay content={docContent} selectedItem={null} />}
               />
               <Route
-                path="/python-pandas-docs/:nodeId"
+                path="/:nodeId"
                 element={<NodeContentDisplay content={docContent} />}
               />
             </Routes>
