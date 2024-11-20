@@ -1,6 +1,8 @@
 // App.js
 import React, { useState, useEffect } from 'react';
-import { HashRouter as Router, Route, Routes, useParams, useNavigate, useLocation } from 'react-router-dom';
+// import { HashRouter as Router, Route, Routes, useParams, useNavigate, useLocation } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes, useParams, Link } from 'react-router-dom';
+
 import Sidebar from './components/Sidebar';
 import ContentDisplay from './components/ContentDisplay';
 import { fetchDocContent } from './data/content';
@@ -27,8 +29,10 @@ function App() {
       <div className={styles.container}>
         <header className={styles.header}>
           <div className={styles.headerContent}>
+          <Link to="/" className={styles.headerLink}>
             <img src={logo} alt="Logo" className={styles.headerLogo} />
             <h1>Fundamentals of Python for Data Analysis</h1>
+          </Link>
           </div>
         </header>
 

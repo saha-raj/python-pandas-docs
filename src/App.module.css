@@ -24,6 +24,14 @@
     margin-right: 15px;        /* Space between logo and text */
   }
 
+.headerLink {
+    text-decoration: none; /* Removes the underline from the link */
+    color: inherit; /* Keeps the original color of the text */
+    display: flex; /* Aligns logo and text horizontally */
+    align-items: center; /* Vertically aligns logo and text */
+}
+  
+
 .headerContent h1 {
     /* font-family: "Major Mono Display", monospace; */
     font-family: "Share Tech Mono", monospace;
